@@ -1,0 +1,360 @@
+				DAY 1 ASSIGNMENT
+QUESTION 1
+
+
+console.assert():
+		Log a message and stack trace to console if the first argument is false.
+console.clear():
+		Clear the console.
+console.count():
+		Log the number of times this line has been called with the given label.
+console.countReset():
+		Resets the value of the counter with the given label.
+console.debug():
+		Outputs a message to the console with the log level "debug".
+console.dir():
+		Displays an interactive listing of the properties of a specified JavaScript object. This listing lets you use disclosure triangles to examine the contents of child objects.
+console.dirxml():
+		Displays an XML/HTML Element representation of the specified object if possible or the JavaScript Object view if it is not possible.
+console.error():
+		Outputs an error message. You may use string substitution and additional arguments with this method.
+console.exception():
+		An alias for error().
+console.group():
+    		Creates a new inline group, indenting all following output by another level. To move back out a level, call groupEnd().
+console.groupCollapsed():
+    		Creates a new inline group, indenting all following output by another level. However, unlike group() this starts with the inline group collapsed requiring the use of a disclosure button to expand it. To move back out a level, call groupEnd().
+console.groupEnd():
+    		Exits the current inline group.
+console.info():
+    		Informative logging of information. You may use string substitution and additional arguments with this method.
+console.log():
+   		 For general output of logging information. You may use string substitution and additional arguments with this method.
+console.profile():
+    		Starts the browser's built-in profiler (for example, the Firefox performance tool). You can specify an optional name for the profile.
+console.profileEnd():
+    		Stops the profiler. You can see the resulting profile in the browser's performance tool (for example, the Firefox performance tool).
+console.table():
+    		Displays tabular data as a table.
+console.time():
+    		Starts a timer with a name specified as an input parameter. Up to 10,000 simultaneous timers can run on a given page.
+console.timeEnd():
+    		Stops the specified timer and logs the elapsed time in seconds since it started.
+console.timeLog():
+    		Logs the value of the specified timer to the console.
+console.timeStamp():
+    		Adds a marker to the browser's Timeline or Waterfall tool.
+console.trace():
+    		Outputs a stack trace.
+console.warn():
+    		Outputs a warning message. You may use string substitution and additional arguments with this method.
+
+
+QUESTION 2
+ 		DIFFERENCE BETWEEN VAR LET AND CONST
+
+
+The TL;DR version:
+
+In Javascript one can define variables using the keywords var, let or const.
+
+example:
+
+var a=10;
+let b=20;
+const PI=3.14;
+
+var: The scope of a variable defined with the keyword “var” is limited to the “function” within which it is defined. If it is defined outside any function, the scope of the variable is global.
+var is “function scoped”.
+
+let: The scope of a variable defined with the keyword “let” or “const” is limited to the “block” defined by curly braces i.e. {} .
+“let” and “const” are“block scoped”.
+
+const: The scope of a variable defined with the keyword “const” is limited to the block defined by curly braces. However if a variable is defined with keyword const, it cannot be reassigned.
+“const” cannot be re-assigned to a new value. However it CAN be mutated.
+
+
+Function scoped vs. Block scoped
+
+Block Scope
+
+In Javascript you can define a code block using curly braces i.e {}.
+Consider the following code that has 2 code blocks each delimited by {}.
+
+{
+  var a=10;
+  console.log(a);
+} //block 1{
+  a++;
+  console.log(a);
+} //block 2/* Since we are using "var a=10", scope of "a" is limited to the function within which it is defined. In this case it is within the global function scope */
+
+In the above example, since we are using the keyword var to define the variable a, the scope of a is limited to the function within which it is defined. Since a is not defined within any function, the scope of the variable a is global, which means that a is recognized within block 2.
+
+In effect if a variable is defined with keyword var, Javascript does not recognize the {} as the scope delimiter. Instead the variable must be enclosed within a “function” to limit it’s scope to that function.
+
+Let us re-write the code above using the keyword let.
+The let keyword was introduced as part of ES6 syntax, as an alternative to var to define variables in Javascript.
+
+{
+ let a=10;
+ console.log(a);
+} //block 1{
+  a++;
+  console.log(a);
+} //block 2/* Since we are using "let a=10", scope of "a" is limited to block 1 and "a" is not recognized in block 2 */
+
+Note that now when you run the code above you will get an error, variable a not recognized in block2. This is because we have defined the variable a using the keyword let, which limits the scope of variable a to the code block within which it was defined.
+Function Scope
+
+In Javascript you limit the scope of a variable by defining it within a function. This is known as function scope.
+
+The keyword var is function scoped i.e. it does not recognize curly brackets i.e. {}, as delimiters. Instead it recognizes the function body as the delimiter.
+
+If we want to define a variable using var, and prevent it from being defined in the global namespace you can re-write it by enclosing the code blocks within functions.
+
+function block1() {
+var a=10;
+ console.log(a);
+} //function scope of block 1function block2() {
+  a++;
+  console.log(a);
+} //function scope of block 2/* Since we have enclosed block1 and block2, within separate functions, the scope of "var a=10", is limited to block 1 and "a" is not recognized in block 2 */
+
+The above code is in effect the same as if we were using let a=10 instead of var a=10. The scope of the variable a is limited to the function within which it is defined, and a is no longer in the global namespace.
+
+
+Why would you chose “let” over “var”?
+
+While programming in Javascript it is a good practice not to define variables as global variables. This is because it is possible to inadvertently modify the global variable from anywhere within the Javascript code. To prevent this one needs to ensure that the scope of the variables are limited to the code block within which they need to be executed.
+
+In the past before keyword let was introduced as part of ES6, to circumvent the issue of variable scoping using var, programmers used the IIFE pattern to prevent the pollution of the global name space. However since the introduction of let, the IIFE pattern is no longer required, and the scope of the variable defined using let is limited to the code block within which it is defined.
+
+The “const” keyword
+
+If a variable is defined using the const keyword, its scope is limited to the block scope. In addition the variable cannot be reassigned to a different value.
+
+{
+ const PI=3.14;
+ console.log(PI);
+} //block 1{
+  console.log(PI);
+} //block 2/* Since we are using "const PI=3.14", scope of "PI" is limited to block 1 and "PI" is not recognized in block 2 */
+
+Note that it is important to understand that const does NOT mean that the value is fixed and immutable. This is a common misunderstanding amongst many Javascript developers, and they incorrectly mentioned that a value defined by the const keyword is immutable (i.e. it cannot be changed).
+
+In the following example we can show that the value of the variable defined within the const keyword is mutable, i.e. it can be changed.
+
+{
+ const a = [1,2,3];
+ const b = {name: "hello"}; a.push(4,5);     //mutating the value of constant "a"
+ b.name="World";  //mutating the value of constant "b"
+ 
+ console.log(a); //this will show [1,2,3,4,5]
+ console.log(b); //this will show {name: "World"}
+ 
+}/* This code will run without any errors, and shows that we CAN mutate the values that are defined by "const" */
+
+However note that these variables defined by const cannot be re-assigned.
+
+{
+ const name = "Mike";
+ const PI = 3.14;  const a = [1,2,3];
+ const b = {name: "hello"}; 
+ name="Joe"; 
+//this will throw an error, since we are attempting to re-assign "name" to a different value. PI = PI + 1; 
+//this will throw an error, since we are attempting to re-assign PI to a different value. a = [1,2,3,4,5];
+//this will throw an error, since we are attempting to re-assign "a" to a different value. b = {name: "hello"};
+//this will throw an error, since we are attempting to re-assign "b" to a different value.
+
+QUESTION 3
+
+There are 8 basic data types in JavaScript.
+
+    number for numbers of any kind: integer or floating-point, integers are limited by ±253.
+    bigint is for integer numbers of arbitrary length.
+    string for strings. A string may have zero or more characters, there’s no separate single-character type.
+    boolean for true/false.
+    null for unknown values – a standalone type that has a single value null.
+    undefined for unassigned values – a standalone type that has a single value undefined.
+    object for more complex data structures.
+    symbol for unique identifiers.
+
+The typeof operator allows us to see which type is stored in a variable.
+
+    Two forms: typeof x or typeof(x).
+    Returns a string with the name of the type, like "string".
+    For null returns "object" – this is an error in the language, it’s not actually an object.
+
+
+Number
+	The number type represents both integer and floating point numbers.
+
+	There are many operations for numbers, e.g. multiplication *, division /, addition +, subtraction -, and so on.
+
+let n = 123;
+n = 12.345;
+
+Bigint
+	BigInt type was recently added to the language to represent integers of arbitrary length.
+
+	A BigInt value is created by appending n to the end of an integer:
+
+
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+
+String:
+	A string in JavaScript must be surrounded by quotes.
+
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+
+Boolean(logical type):
+	The boolean type has only two values: true and false.
+
+     	This type is commonly used to store yes/no values: true means “yes, correct”, and false means “no, incorrect”.
+
+let nameFieldChecked = true; // yes, name field is checked
+let ageFieldChecked = false; // no, age field is not checked
+
+null value:
+	The special null value does not belong to any of the types described above.
+
+It forms a separate type of its own which contains only the null value:
+
+let age = null;
+
+Undefined value:
+	The special value undefined also stands apart. It makes a type of its own, just like null.
+
+The meaning of undefined is “value is not assigned”.
+
+let age = 100;
+
+// change the value to undefined
+age = undefined;
+
+alert(age); // "undefined"
+
+Objects and Symbols:
+	The object type is special.
+
+All other types are called “primitive” because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
+
+Being that important, objects deserve a special treatment. We’ll deal with them later in the chapter Objects, after we learn more about primitives.
+
+The symbol type is used to create unique identifiers for objects. We have to mention it here for the sake of completeness, but also postpone the details till we know objects.
+
+
+The typeof operator:
+
+The typeof operator returns the type of the argument. It’s useful when we want to process values of different types differently or just want to do a quick check.
+
+It supports two forms of syntax:
+
+    As an operator: typeof x.
+    As a function: typeof(x).
+
+In other words, it works with parentheses or without them. The result is the same.
+
+The call to typeof x returns a string with the type name:
+
+typeof undefined // "undefined"
+
+typeof 0 // "number"
+
+typeof 10n // "bigint"
+
+typeof true // "boolean"
+
+typeof "foo" // "string"
+
+typeof Symbol("id") // "symbol"
+
+typeof Math // "object"  (1)
+
+typeof null // "object"  (2)
+
+typeof alert // "function"  (3)
+
+The last three lines may need additional explanation:
+
+    1.Math is a built-in object that provides mathematical operations. We will learn it in the chapter Numbers. Here, it serves just as an example of an object.
+    2.The result of typeof null is "object". That’s an officially recognized error in typeof behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, null is not an object. It is a special value with a separate type of its own.
+    3.The result of typeof alert is "function", because alert is a function. We’ll study functions in the next chapters where we’ll also see that there’s no special “function” type in JavaScript. Functions belong to the object type. But typeof treats them differently, returning "function". That also comes from the early days of JavaScript. Technically, such behavior isn’t correct, but can be convenient in practice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
