@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Calculator</title>
+    <script src="scripts/Que 4.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <!-- <script src="scripts/Que 1.js"></script> -->
+    <!-- <script src="scripts/Que 2.js"></script> -->
+
+    <h1>My calculator</h1>
+
+    <table border="1" cellpadding="5" cellspacing="5" width="600">
+        <tr align="center">
+            <td>First number</td>
+            <td>Second Number</td>
+            <td>Result</td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input name="number1" type="text" size=10 id="num1" /></td>
+            <td>
+                <input name="number2" type="text" size=10 id="num2" /></td>
+            <td>
+                <input type="tex" id="result" readonly></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button onclick="showresult('1')">+</button>
+                <button onclick="showresult('2')">-</button>
+                <button onclick="showresult('3')">*</button>
+                <button onclick="showresult('4')">/</button>
+                <button onclick="showresult('5')">sqrt</button>
+                <button onclick="showresult('6')">%</button>
+            </td>
+        </tr>
+
+    </table>
+</body>
+
+</html>
